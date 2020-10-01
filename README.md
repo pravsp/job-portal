@@ -57,3 +57,19 @@ curl --header "Content-Type: application/json" \
  --data '{"username": "aruncm", "password": "test123", "fname": "Arun", "lname": "CM", "email": "aruncm@abc.corp", "phone": "123789"}' \
  http://localhost:5000/applicant/register
 
+# Step5: Deploy the containers in the kubernetes
+
+kubectl apply -f k8s.yaml
+kubectl get deployments
+kubectl get services
+kubectl get pods
+
+# Step6: Verify the application in the kubectl with curl
+
+curl -XGET http://localhost:6000/applicants
+
+curl --header "Content-Type: application/json" \
+ --request POST \
+ --data '{"username": "aruncm", "password": "test123", "fname": "Arun", "lname": "CM", "email": "aruncm@abc.corp", "phone": "123789"}' \
+ http://localhost:6000/applicant/register
+
